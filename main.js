@@ -8,13 +8,18 @@ function randomValueFromArray(array) {
 }
 
 const storyText =
-  "It was 94 fahrenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: weighs 300 pounds, and it was a hot day.";
-const insertX = ["Willy the Goblin", "Big Daddy", "Father Christmas"];
-const insertY = ["the soup kitchen", "Disneyland", "the White House"];
+  "外は華氏94度だったので、:insertx:は散歩に出かけました。:inserty:に到着すると、彼らはしばらく恐怖の眼差しで見つめ、:insertz:。ボブはその一時始終を見ていましたが、驚きませんでした。––:insertx:は体重が300ポンドもあり、その日は暑かったのです。";
+//"It was 94 fahrenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: weighs 300 pounds, and it was a hot day.";
+const insertX = [
+  "ゴブリンのウィリー",
+  "ビッグダディ",
+  "ファーザー・クリスマス",
+];
+const insertY = ["炊き出し", "ディズニーランド", "ホワイトハウス"];
 const insertZ = [
-  "spontaneously combusted",
-  "melted into a puddle on the sidewalk",
-  "turned into a slug and crawled away",
+  "自然発火しました",
+  "歩道で水たまりになって溶けてしまいました",
+  "ナメクジになり這っていきました",
 ];
 
 randomize.addEventListener("click", result);
@@ -33,16 +38,25 @@ function result() {
 
   if (customName.value !== "") {
     const name = customName.value;
-    newStory = newStory.replace("Bob", name);
+    newStory = newStory.replace("ボブ", name);
   }
 
   if (document.getElementById("uk").checked) {
     const weight = Math.round(300 * 0.071);
     const temperature = Math.round(((94 - 32) * 5) / 9);
-    const weightUK = weight + " stone";
-    const temperatureUK = temperature + " centigrade";
-    newStory = newStory.replace("300 pounds", weightUK);
-    newStory = newStory.replace("94 fahrenheit", temperatureUK);
+    const weightUK = weight + "ストーン";
+    const temperatureUK = temperature + "度";
+    newStory = newStory.replace("300ポンド", weightUK);
+    newStory = newStory.replace("華氏94度", temperatureUK);
+  }
+
+  if (document.getElementById("jp").checked) {
+    const weight = Math.round(300 * 0.454);
+    const temperature = Math.round(((94 - 32) * 5) / 9);
+    const weightJP = weight + "キロ";
+    const temperatureJP = temperature + "度";
+    newStory = newStory.replace("300ポンド", weightJP);
+    newStory = newStory.replace("華氏94度", temperatureJP);
   }
 
   story.textContent = newStory;
